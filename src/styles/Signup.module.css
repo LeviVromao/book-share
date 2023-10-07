@@ -1,0 +1,52 @@
+.title {
+    position: relative;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+  
+.title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #0C162D;
+    animation: typing 5s linear 1;
+}
+
+
+.subtitle {
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.show_text {
+    font-size: 17px
+}
+
+.show_subtitle {
+    font-size: 14px;
+}
+
+.subtitle::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #0C162D;
+    animation: typing 5s linear 1;
+}
+  
+@keyframes typing {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 100%;
+    }
+}
+  
