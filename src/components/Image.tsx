@@ -9,6 +9,6 @@ interface InterfaceImage {
 
 export default function ImageComp({ desc, path, className, id}: InterfaceImage) {
     return (
-        <Image src={path} alt={desc} className={className} id={id} />
+        <Image src={path} alt={desc} className={className} id={id} width={300} height={300}/>
     )
 }

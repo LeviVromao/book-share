@@ -12,11 +12,11 @@ export default function ScrollImages({ images, count, className , id}: IScrollIm
     return (
         count? (
             threeImages.map((path, i) => (
-                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
+                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id} width={50} height={50}/>
             ))
         ): ( 
             images.map((path, i) => (
-                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
+                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id} width={50} height={50}/>
             ))
         )
     )  

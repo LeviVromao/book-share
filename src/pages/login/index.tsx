@@ -49,7 +49,7 @@ export default function Login() {
             </Head>
             <div className="flex flex-col items-center mb-7">
                 <Link href="/" className="w-fit block">
-                    <Image src="/icon_book.png" alt="A book used by logo" />
+                    <Image src="/icon_book.png" alt="A book used by logo" width={72} height={72}/>
                 </Link>
                 <Text elem="h1" className="text-xl text-[#fff]">Faça login no Book-share</Text>
             </div>

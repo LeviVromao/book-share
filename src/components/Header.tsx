@@ -14,7 +14,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
             {pageLog ? (
             <>
                 <Link href="/" className='flex items-center gap-2.5'>
-                    <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" />
+                    <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" width={50} height={50}/>
                     <p className='text-orange text-lg select-none'>BookShare</p>
                 </Link>                
                 <div className='text-white flex gap-2 items-center'>
@@ -34,7 +34,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
                             <div className='w-[58%] h-[2px] bg-white rounded-lg'></div>
                         </div>
                         <Link href="/" className='flex items-center gap-2.5'>
-                            <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" />
+                            <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" width={50} height={50}/>
                             <p className='text-orange text-lg select-none'>BookShare</p>
                         </Link>
                     </div>
@@ -43,7 +43,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
             (
             <>
                 <Link href="/" className='flex items-center gap-2.5'>
-                    <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" />
+                    <Image src="/icon_book.png" className='w-[50px]' alt="Um livro que é o logo da página" width={50} height={50}/>
                     <p className='text-orange text-lg select-none'>BookShare</p>
                 </Link>
                 <div className='flex gap-2 items-center text-white text-base'>
