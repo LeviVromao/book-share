@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 interface InterfaceImage {
     desc: string
     path: string
@@ -5,8 +7,8 @@ interface InterfaceImage {
     id?: string
 }
 
-export default function Image({ desc, path, className, id}: InterfaceImage) {
+export default function ImageComp({ desc, path, className, id}: InterfaceImage) {
     return (
-        <img src={path} alt={desc} className={className} id={id} />
+        <Image src={path} alt={desc} className={className} id={id} />
     )
 }

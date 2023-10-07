@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 type IScrollImages = {
     images: Array<string>
     count?: boolean
@@ -10,11 +12,11 @@ export default function ScrollImages({ images, count, className , id}: IScrollIm
     return (
         count? (
             threeImages.map((path, i) => (
-                <img src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
+                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
             ))
         ): ( 
             images.map((path, i) => (
-                <img src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
+                <Image src={path} className={className} key={i} alt="A cover image of a book" id={id}/>
             ))
         )
     )  

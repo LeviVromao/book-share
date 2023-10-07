@@ -2,7 +2,9 @@ import Text from "@/components/Text"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { setCookie } from "nookies"
+import Link from "next/link"
 import Head from "next/head"
+import Image from "next/image"
 
 export default function Login() {
     const [ login, setLogin ] = useState<string>('')
@@ -46,9 +48,9 @@ export default function Login() {
                 <title>Login - book share</title>
             </Head>
             <div className="flex flex-col items-center mb-7">
-                <a href="/" className="w-fit block">
-                    <img src="/icon_book.png" alt="A book used by logo" />
-                </a>
+                <Link href="/" className="w-fit block">
+                    <Image src="/icon_book.png" alt="A book used by logo" />
+                </Link>
                 <Text elem="h1" className="text-xl text-[#fff]">Faça login no Book-share</Text>
             </div>
             <div className="flex flex-col items-center justify-center h-[60%]">
@@ -74,9 +76,9 @@ export default function Login() {
                             >
                                 Senha
                             </label>
-                            <a href="/forgotpass">
+                            <Link href="/forgotpass">
                                 <Text elem="p" className="text-blue-500">Esqueceu a senha?</Text>
-                            </a>
+                            </Link>
                         </div>
                         <input 
                             type="password" 
@@ -96,9 +98,9 @@ export default function Login() {
                         >
                             Novo(a) no Book-Share?
                         </Text>
-                        <a href="/signup" className="text-sm text-blue-600">
+                        <Link href="/signup" className="text-sm text-blue-600">
                             Criar uma conta
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
