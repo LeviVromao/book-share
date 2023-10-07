@@ -105,7 +105,7 @@ export default function Welcome() {
           </div>
             <Image 
               path='/library_img_site.jpg' 
-              desc='An library ilustrating the functionality of the web site'
+              alt='An library ilustrating the functionality of the web site'
               className='w-[62%] h-[62%] sm:h-[71%] sm:w-[32%] object-cover'
             />
         </section>
