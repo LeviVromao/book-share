@@ -1,21 +1,26 @@
 import Text from "@/components/Text"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { setCookie } from "nookies"
+import { parseCookies, setCookie } from "nookies"
 import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
+import { Triangle } from "react-loader-spinner"
+import { GetServerSideProps, NextPageContext } from "next"
 
 export default function Login() {
     const [ login, setLogin ] = useState<string>('')
     const [ password, setPassword ] = useState<string>('')
     const [ error, setError ] = useState<string>('')
     const router = useRouter()
+    const [ loading, setLoading ] = useState<boolean>(false)
     
     const authorizeUser = async (e: any) => {
         e.preventDefault()
         let res
         let data
+        setLoading(true)
+
         if(login && password) {
             res = await fetch('http://localhost:3100/login', {
                 method: 'POST',
@@ -29,10 +34,12 @@ export default function Login() {
 
             if(res.status === 404) {
                 setError(data.message)
+                setLoading(false)
             } else if(res.status === 200) {
                 setCookie(undefined, 'authToken', data.token, {
                     maxAge: 60 * 60 * 1 // 1 hora de acesso.
                 })
+                setLoading(false)
                 router.push('/home')
             }
         }
@@ -43,7 +50,7 @@ export default function Login() {
     }, 3000)
 
     return (
-        <div className="h-[100vh] pt-7 bg-blueOcean">
+        <div className="h-[100vh] pt-7 bg-blueOcean relative">
             <Head>
                 <title>Login - book share</title>
             </Head>
@@ -104,6 +111,36 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            {loading ?
+            (
+                <div className="absolute right-[5%] bottom-[6%] bg-black rounded-lg p-1.5">
+                    <Triangle 
+                        height={38}
+                        width={38}
+                        color="#fff"
+                    />
+                </div>
+            ) : 
+            (
+                ''
+            )}
         </div>
     )
+}
+
+export function getServerSideProps(ctx: NextPageContext){
+    const {'authToken': token } = parseCookies(ctx)
+
+    if(token) {
+        return {
+            redirect: {
+                destination: '/home',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
