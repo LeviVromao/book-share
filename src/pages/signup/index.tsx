@@ -18,7 +18,7 @@ export default function SignUp() {
         let res
         let data
         if(email || password || username) {
-            res = await fetch('http://localhost:3100/register', {
+            res = await fetch('https://server-node-ten.vercel.app/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', 

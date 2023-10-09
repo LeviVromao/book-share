@@ -22,7 +22,7 @@ export default function Login() {
         setLoading(true)
 
         if(login && password) {
-            res = await fetch('http://localhost:3100/login', {
+            res = await fetch('https://server-node-ten.vercel.app/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
