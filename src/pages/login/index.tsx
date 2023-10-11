@@ -6,7 +6,7 @@ import Link from "next/link"
 import Head from "next/head"
 import Image from "next/image"
 import { Triangle } from "react-loader-spinner"
-import { GetServerSideProps, NextPageContext } from "next"
+import { NextPageContext } from "next"
 
 export default function Login() {
     const [ login, setLogin ] = useState<string>('')

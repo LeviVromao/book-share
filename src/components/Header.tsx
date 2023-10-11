@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { useState } from 'react'
+import React, {useState, useEffect} from 'react'
 import { HomeIcon, XIcon } from "lucide-react";
 
 interface IHeader {
@@ -13,6 +12,24 @@ interface IHeader {
 
 export default function Header({ id, pageLog, pageHome, justify_between }: IHeader) {
     const [ open, setOpen ] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(open) {
+            const menu = document.querySelector('.menu')  as HTMLDivElement
+            const menuButton = document.querySelector('.menuButton') as HTMLDivElement
+            const closeMenuByClick = (e: any) => {
+                if(!menuButton.contains(e.target) && !menu.contains(e.target)) {
+                    setOpen(false)
+                }
+            }
+            
+            document.addEventListener('click', closeMenuByClick)
+    
+            return () => {
+                document.removeEventListener('click', closeMenuByClick)
+            }
+        }
+    }, [open])
 
     const openMenu = () => {
         if(!open) {
@@ -29,6 +46,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
             document.body.style.overflow = 'auto'
         }
     }
+
     return (
         <main className={`flex items-center ${justify_between} px-6 bg-blueOcean relative`} id={id}>
             {pageLog ? (
@@ -48,7 +66,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
             (
                 <>
                     <div className='flex gap-2.5 items-center'>
-                        <div onClick={openMenu} className='flex flex-col items-center justify-center gap-[0.14rem] h-[33px] w-[33px] rounded border-solid border border-[#7a828e] cursor-pointer hover:border-[#bdc4cc]'>
+                        <div onClick={openMenu} className='flex menuButton flex-col items-center justify-center gap-[0.14rem] h-[33px] w-[33px] rounded border-solid border border-[#7a828e] cursor-pointer hover:border-[#bdc4cc]'>
                             <div className='w-[58%] h-[2px] bg-white rounded-lg'></div>
                             <div className='w-[58%] h-[2px] bg-white rounded-lg'></div>
                             <div className='w-[58%] h-[2px] bg-white rounded-lg'></div>
@@ -62,7 +80,7 @@ export default function Header({ id, pageLog, pageHome, justify_between }: IHead
                         (
                             <div className='absolute w-[100%] h-[100vh] left-0 top-0 backdrop-contrast-50'>
                                 <div className='relative'>
-                                    <div className='absolute left-0 top-0 p-4 w-[320px] h-[100vh] bg-[#272b33] text-white rounded-tr-3xl rounded-br-3xl'>
+                                    <div className='absolute left-0 top-0 p-4 w-[320px] h-[100vh] bg-[#272b33] text-white rounded-tr-3xl rounded-br-3xl menu'>
                                         <div className='flex justify-between'>
                                             <Link href="/" className='flex items-center gap-0.5'> 
                                                 <Image src="/icon_book.png" alt='a colored book' height={30} width={30} />
