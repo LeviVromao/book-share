@@ -1,0 +1,12 @@
+.appearMenu {
+    transform: translateX(0%);
+    opacity: 1;
+    transition-property: transform, opacity;
+    transition-duration: 600s;
+    transition-timing-function: ease-out;
+}
+
+.search::placeholder {
+    color: white;
+    font-size: 14px;
+}
