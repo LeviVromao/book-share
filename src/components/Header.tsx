@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {useState, useEffect} from 'react'
-import { HomeIcon, XIcon, SearchIcon, User2, Book } from "lucide-react";
+import { SearchIcon, User2 } from "lucide-react";
 import styles from '@/styles/Home.module.css'
+import Menu from './Menu';
+import Search from './Search';
+import ProfileCard from './ProfileCard';
 
 interface IHeader {
     id?: string
@@ -37,8 +40,8 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
             const searchButton = document.querySelector('.searchButton') as HTMLDivElement
             const handleVisibility = (e: any) => {
                 if(!searchButton.contains(e.target) && !searchForm.contains(e.target)) {
-                    setSearchVisibility(false)
                     search.style.display = 'none'
+                    setSearchVisibility(false)
                 }
             }
     
@@ -47,7 +50,7 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
                 document.removeEventListener('click', handleVisibility)
             }
         }
-    }, [])
+    }, [searchVisible])
 
     useEffect(() => {
         if(menuVisibility) {
@@ -69,14 +72,15 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
         }
     }, [menuVisibility])
 
+    const openCardProfile = () => {
+
+    }
+
     const openSearch = () => {
         const search = document.querySelector('.search') as HTMLDivElement
-        if(!searchVisible) {
-            search.style.display = 'block'
-            document.body.style.overflow = 'hidden'
-            setSearchVisibility(true)
-        }
-
+        search.style.display = 'block'
+        document.body.style.overflow = 'hidden'
+        setSearchVisibility(true)
     }
 
     const closeSearch = () => {
@@ -145,55 +149,13 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
                             <SearchIcon className='text-white w-[17px]'/>
                             <p className='text-white text-sm space-x-[2px] leading-tight '>Clique  <span className='inline-grid w-[12px] vertical-middle border-white border'>/</span>  para procurar</p>
                         </div>  
-                        <Link href="/profile" className='border-2 border-white rounded-lg'>
+                        <button className='border-2 border-white rounded-lg' onClick={openCardProfile}>
                             <User2 className='text-white'/>
-                        </Link>
-                    </div>  
-                    <div className='hidden absolute w-[100%] h-[100vh] left-0 top-0 backdrop-contrast-50 menu_background'>
-                        <div className='relative'>
-                            <div className='absolute left-0 top-0 p-4 w-[320px] h-[100vh] bg-[#272b33] text-white rounded-tr-3xl ${styles.hiddeMenu} rounded-br-3xl menu'>
-                                <div className='flex justify-between'>
-                                    <Link href="/" className='flex items-center gap-0.5'> 
-                                        <Image src="/icon_book.png" alt='a colored book' height={30} width={30} />
-                                        <p className='text-orange'>Book Share</p>                                    
-                                    </Link>
-                                    <Link href="/home">    
-                                        <div onClick={closeMenu} className='flex items-center h-[24px] w-[24px] self-center cursor-pointer rounded hover:bg-[#525964]'>
-                                            <XIcon className='h-[18px]'/>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className='pt-1.5 pr-1.5 pb-1.5'>
-                                    <button className='flex gap-0.5 w-[100%] p-1.5 hover:border-[1px] border-[#525964] rounded-sm'>
-                                        <HomeIcon className='h-[18px]'/>
-                                        <p className='text-sm'>Home</p>
-                                    </button>
-                                </div>
-                            </div>    
-                        </div>
-                    </div>
-                    <div className='search hidden absolute backdrop-contrast-50 h-[100vh] w-[100%] top-0 left-0'>
-                        <div className='searchForm border-2 border-[#808893] h-[70vh] rounded-bl-[43px] rounded-br-[43px] bg-[#0a0c10] p-3'>
-                            <div className='relative'>
-                                <input type='search' className={`flex justify-between w-[100%] h-[39px] ${styles.search} border-2 border-[#808893] pl-[36px] rounded-md bg-[#0a0c10] text-white`} placeholder='Procure aqui um livro.'/>
-                                <SearchIcon className='absolute top-[9px] left-[15px] text-white w-[16px]'/>
-                                <button onClick={closeSearch} className='inline-grid justify-center items-center absolute w-[25px] h-[23px] top-[9px] right-[15px] hover:bg-[#525964]'>
-                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className="octicon octicon-x-circle-fill fill-white Button-visual">
-    <                               path d="M2.343 13.657A8 8 0 1 1 13.658 2.343 8 8 0 0 1 2.343 13.657ZM6.03 4.97a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042L6.94 8 4.97 9.97a.749.749 0 0 0 .326 1.275.749.749 0 0 0 .734-.215L8 9.06l1.97 1.97a.749.749 0 0 0 1.275-.326.749.749 0 0 0-.215-.734L9.06 8l1.97-1.97a.749.749 0 0 0-.326-1.275.749.749 0 0 0-.734.215L8 6.94Z"></path></svg>
-                                </button>
-                                <div className='overflow-y-auto'>
-                                    <p className='text-white text-sm my-2.5'>Repositories</p>
-                                    <Link href="/" className='flex justify-between items-center h-[34px] text-white hover:bg-[#525964] border-[#808893] border rounded-md p-0.5'>
-                                        <div className='flex gap-[5px] items-center'>
-                                            <Book className='text-white w-[16px]'/>
-                                            <p className='text-[14px]'>LeviVromao/AliceNoPaisDasMaravilhas</p>
-                                        </div>
-                                        <p>Ir para...</p>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </button>
+                    </div> 
+                    <Menu closeMenu={closeMenu} />
+                    <Search closeSearch={closeSearch}/>
+                    <ProfileCard />
                 </>
             ): 
             (

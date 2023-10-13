@@ -10,25 +10,7 @@ export default function Home() {
     return (
         <div>
             <Header pageHome justify_between="justify-between" />
-            <Button>Sou um botao</Button>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
-            <Image src="/library_img_site.jpg" alt="a selfie takes by the owner of this web site" height={500} width={500}/>
+            
         </div>
     )
 }
