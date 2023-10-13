@@ -18,6 +18,7 @@ interface IHeader {
 export default function Header({ id, pageLog, pageHome, justify_between, receiveData }: IHeader) {
     const [ menuVisibility, setMenuVisibility ] = useState<boolean>(false)
     const [ searchVisible, setSearchVisibility ] = useState<boolean>(false)
+    const [ profileCardVisible, setProfileCardVisibility ] = useState<boolean>(false)
 
     useEffect(() => {
         const handleKeypressed = (e: any) => {
@@ -32,6 +33,28 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
             document.removeEventListener('keypress', handleKeypressed)
         }
     }, [])
+
+    useEffect(() => {
+        if(profileCardVisible) {
+            const profilePopup = document.querySelector('.profilePopup') as HTMLDivElement
+            const profileCard = document.querySelector('.profileCard') as HTMLDivElement
+            const profileCardButton = document.querySelector('.profileCardButton') as HTMLButtonElement
+
+            const handleProfileCardVisibility = (e: any) => {
+                if(!profileCardButton.contains(e.target) && !profileCard.contains(e.target)){
+                    profilePopup.style.display = 'none'
+                    setProfileCardVisibility(false)
+                }
+            }
+
+            document.addEventListener('click', handleProfileCardVisibility)
+
+            return () => {
+                document.removeEventListener('click', handleProfileCardVisibility)
+            }
+        }
+
+    }, [profileCardVisible])
 
     useEffect(() => {
         if(searchVisible) {
@@ -73,7 +96,15 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
     }, [menuVisibility])
 
     const openCardProfile = () => {
+        const profilePopup = document.querySelector('.profilePopup') as HTMLDivElement
+        profilePopup.style.display = 'block'
+        setProfileCardVisibility(true)
+    }
 
+    const closeCardProfile = () => {
+        const profilePopup = document.querySelector('.profilePopup') as HTMLDivElement
+        profilePopup.style.display = 'none'
+        setProfileCardVisibility(false)
     }
 
     const openSearch = () => {
@@ -149,13 +180,13 @@ export default function Header({ id, pageLog, pageHome, justify_between, receive
                             <SearchIcon className='text-white w-[17px]'/>
                             <p className='text-white text-sm space-x-[2px] leading-tight '>Clique  <span className='inline-grid w-[12px] vertical-middle border-white border'>/</span>  para procurar</p>
                         </div>  
-                        <button className='border-2 border-white rounded-lg' onClick={openCardProfile}>
+                        <button className='profileCardButton border-2 border-white rounded-lg' onClick={openCardProfile}>
                             <User2 className='text-white'/>
                         </button>
                     </div> 
                     <Menu closeMenu={closeMenu} />
                     <Search closeSearch={closeSearch}/>
-                    <ProfileCard />
+                    <ProfileCard closeCardProfile={closeCardProfile}/>
                 </>
             ): 
             (
